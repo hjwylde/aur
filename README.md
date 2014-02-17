@@ -1,4 +1,1 @@
-aur
-===
-
-Arch Build System files for the AUR
+# Arch Build System files for the AUR
