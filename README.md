@@ -1,1 +1,1 @@
-# Arch Build System files for the AUR
+# Arch User Repository build files
