@@ -26,9 +26,9 @@ subprojects {
 
     updpkgsums << {
         def proc = ['updpkgsums'].execute()
-        proc.in.eachLine {
-            logger.info it
-        }
+        //proc.in.eachLine {
+        //    logger.lifecycle it
+        //}
         proc.err.eachLine {
             logger.error it
         }
@@ -46,7 +46,7 @@ subprojects {
     makepkg << {
         def proc = ['makepkg', '-cf'].execute()
         /*proc.in.eachLine {
-            logger.info it
+            logger.lifecycle it
         }
         proc.err.eachLine {
             logger.error it
@@ -65,7 +65,7 @@ subprojects {
     makesrc << {
         def proc = ['makepkg', '-cf', '--source'].execute()
         /*proc.in.eachLine {
-            logger.info it
+            logger.lifecycle it
         }
         proc.err.eachLine {
             logger.error it
