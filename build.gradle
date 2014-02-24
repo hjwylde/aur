@@ -26,12 +26,17 @@ subprojects {
 
     updpkgsums << {
         def proc = ['updpkgsums'].execute()
-        //proc.in.eachLine {
-        //    logger.lifecycle it
-        //}
-        proc.err.eachLine {
-            logger.error it
+
+        Thread.start {
+            proc.in.eachLine {
+                logger.lifecycle it
+            }
+            proc.err.eachLine {
+                logger.error it
+            }
         }
+
+        proc.waitFor()
     }
 
     task makepkg() {
@@ -45,12 +50,17 @@ subprojects {
 
     makepkg << {
         def proc = ['makepkg', '-cf'].execute()
-        /*proc.in.eachLine {
-            logger.lifecycle it
+
+        Thread.start {
+            proc.in.eachLine {
+                logger.lifecycle it
+            }
+            proc.err.eachLine {
+                logger.error it
+            }
         }
-        proc.err.eachLine {
-            logger.error it
-        }*/
+
+        proc.waitFor()
     }
 
     task makesrc {
@@ -64,12 +74,17 @@ subprojects {
 
     makesrc << {
         def proc = ['makepkg', '-cf', '--source'].execute()
-        /*proc.in.eachLine {
-            logger.lifecycle it
+
+        Thread.start {
+            proc.in.eachLine {
+                logger.lifecycle it
+            }
+            proc.err.eachLine {
+                logger.error it
+            }
         }
-        proc.err.eachLine {
-            logger.error it
-        }*/
+
+        proc.waitFor()
     }
 
     task clean {
