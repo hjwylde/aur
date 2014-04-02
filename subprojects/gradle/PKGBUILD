@@ -11,7 +11,7 @@ license=('APACHE')
 depends=('java-environment')
 source=(http://services.gradle.org/distributions/$pkgname-$pkgver-bin.zip gradle.sh)
 
-package(){
+package() {
     # install profile.d script
     install -dm755 "${pkgdir}"/etc/profile.d
     install -m755 "${srcdir}/${pkgname}.sh" "${pkgdir}/etc/profile.d/"
