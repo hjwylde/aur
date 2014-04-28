@@ -3,7 +3,7 @@
 
 pkgname=wdk
 pkgver=0.3.23
-pkgrel=3
+pkgrel=4
 pkgdesc='Whiley Development Kit'
 arch=('any')
 url='http://whiley.org/'
@@ -23,7 +23,7 @@ package() {
     install -m755 etc/profile.d/* "$pkgdir/etc/profile.d/"
 
     mkdir -p "$pkgdir/usr/bin/"
-    ln -s /usr/lib/wdk/bin/* "$pkgdir/usr/bin/"
+    ln -s $(ls bin/ | sed 's/.*/\/usr\/lib\/wdk\/bin\/&/') "$pkgdir/usr/bin/"
     rm "$pkgdir/usr/bin/wy_common.bash"
 
     mkdir -p "$pkgdir/usr/lib/$pkgname/bin/"
