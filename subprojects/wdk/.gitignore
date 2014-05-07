@@ -1,2 +1,7 @@
-wdk-src-*.tgz
+# Resource files
+wdk-src-v*.tgz
+
+# Generated files
+wdk-*.pkg.tar.xz
+wdk-*.src.tar.gz
 
