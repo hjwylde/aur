@@ -23,22 +23,23 @@ package() {
     install -m755 etc/profile.d/* "$pkgdir/etc/profile.d/"
 
     mkdir -p "$pkgdir/usr/bin/"
-    ln -s $(ls bin/ | sed 's/.*/\/usr\/lib\/wdk\/bin\/&/') "$pkgdir/usr/bin/"
+    ln -s $(ls bin/ | sed 's/.*/\/usr\/lib\/wdk\/bin\/&/') "$pkgdir/usr/bin/" || return 1
     rm "$pkgdir/usr/bin/wy_common.bash"
 
     mkdir -p "$pkgdir/usr/lib/$pkgname/bin/"
-    install -m755 bin/* "$pkgdir/usr/lib/$pkgname/bin/"
+    install -m755 bin/* "$pkgdir/usr/lib/$pkgname/bin/" || return 1
 
-    install -Dm644 usr/share/vim/vimfiles/syntax/whiley.vim "$pkgdir/usr/share/vim/vimfiles/syntax/whiley.vim"
+    install -Dm644 usr/share/vim/vimfiles/syntax/whiley.vim "$pkgdir/usr/share/vim/vimfiles/syntax/whiley.vim" || return 1
 
 
     # Install package files
     cd "$srcdir/$pkgname-v$pkgver"
 
-    cp -ar lib "$pkgdir/usr/lib/$pkgname/"
+    # TODO: Change to use "install"
+    cp -ar lib "$pkgdir/usr/lib/$pkgname/" || return 1
 
-    install -Dm644 CONTRIBUTORS "$pkgdir/usr/share/doc/$pkgname/CONTRIBUTORS"
-    install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
+    install -Dm644 CONTRIBUTORS "$pkgdir/usr/share/doc/$pkgname/CONTRIBUTORS" || return 1
+    install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README" || return 1
 
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE" || return 1
 }

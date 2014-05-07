@@ -16,6 +16,7 @@ package() {
     cd "$srcdir/$_wdk_pkgname-v$pkgver"
 
     mkdir -p "$pkgdir/usr/lib/$_wdk_pkgname/"
+    # TODO: Change to using install instead of cp
     cp -ar examples "$pkgdir/usr/lib/$_wdk_pkgname/"
     cp -ar modules "$pkgdir/usr/lib/$_wdk_pkgname/"
     cp -ar tests "$pkgdir/usr/lib/$_wdk_pkgname/"
